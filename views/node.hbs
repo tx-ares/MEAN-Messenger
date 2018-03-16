@@ -1,3 +1,8 @@
 <h1> A NodeJS View </h1>
 
  {{message}}  <!-- This is the data that was passed from routes/app.js as the 'node' route. -->
+
+<form class="test-form" action="/message" method="post">
+    <input type="text" name="message">
+    <button type="submit">Submit</button>
+</form>
