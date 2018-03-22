@@ -1,3 +1,11 @@
+//Request types: GET, POST, PATCH, PUT, DELETE, and more.
+
+// GET: Get a resource.
+// POST: Create a resource.
+// Patch: Update a resource.
+// Put: Replace a resource.
+// Delete: You guessed it... Delete a resource.
+
 var express = require('express');
 var router = express.Router();
 
