@@ -4,10 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose'); // After installing mongoose with NPM, we will now have access to its functions.
 
 var appRoutes = require('./routes/app');
 
 var app = express();
+mongoose.connect('localhost:27017/node-angular'); // We can now connect to our database to the server using Mongoose.  We can then pass in the path to where the db server lives.  I can also specify a new directory "node-angular" , if it doesn't exist, it will create it on the fly. 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
