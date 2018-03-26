@@ -4,7 +4,7 @@ var Schema = mongoose.Schema; // A Schema is a blueprint for our model. The Sche
 
 var schema = new Schema({
   content: {type: String, required: true},
-  user: {type: Schema.Types.ObjectId}
+  user: {type: Schema.Types.ObjectId, ref:'User'} //The 'ref' key will "connect" our messages to our users.  The user schema will also have a 'ref' referencing the messages.
 });
 
 module.exports = mongoose.model('Message' , schema); //This will export a model called Message by passing in the name of the Model and its schema then will generate a collection automatically if it is the first of its kind.
