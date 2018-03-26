@@ -11,7 +11,13 @@ var router = express.Router();
 var User = require('../models/user'); //Import the User model
 
 router.get('/', function (req, res, next) {
-    res.render('node');
+    User.findOne({} , function(err, doc) { // An async mongoose method called .findOne() can return a single instance of a object in our db.
+      // It is important to note: As this is an async operation, the data will ONLY be available in this callback function.  Trying to call it outside of it will result in error because the request likely isn't finished yet!
+      if (err) {
+        return res.send('Error!');
+      }
+      res.render('node' , {email: doc.email});
+    });
 });
 
 // router.get('/message', function (req, res, next) { // A GET route will consume some data from a source after making a request.
