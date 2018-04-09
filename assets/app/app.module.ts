@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from "./app.component";
 
-@NgModule({
+@NgModule({ // This is a typescript Decorator that attaches addt. info to a class.
     declarations: [
         AppComponent
     ],
