@@ -19,8 +19,8 @@ import { Component } from '@angular/core';
       `] // Angular also allows us to specically target elements within a component for styling.  We can pass it in as normal CSS here.
 })
 export class AppComponent {
-  message = {
-    content: "Yo yo yo it's a message",
-    author: "Adan"
-  }
+    message = {
+        content: "Yo yo yo it's a message",
+        author: "Adan"
+    }
 }
