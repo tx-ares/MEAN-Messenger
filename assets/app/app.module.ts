@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from "./app.component";
+import { MessageComponent } from './messages/message.component';
 
-@NgModule({ // This is a typescript Decorator that attaches addt. info to a class.
+@NgModule({ // This is a typescript Decorator that attaches additional info to a class.
     declarations: [
-        AppComponent
+        AppComponent,
+        MessageComponent
     ],
     imports: [BrowserModule, FormsModule],
     bootstrap: [AppComponent]
