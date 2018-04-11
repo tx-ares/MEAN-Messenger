@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 import { Message } from "./message.model";
 
@@ -23,7 +23,9 @@ import { Message } from "./message.model";
 export class MessageComponent {
     @Input('myMessageAliasName') message: Message; //By using 'property binding' we can pass in the message property.  Also, by adding '@Input()' to the property name, it can be made assignable from an outside source. i.e. An input field.
 
+    @Output() editClicked = new EventEmitter<string>(); //@Output can bind a output function once it is called, in addition 'emit' the event AND its type.
+
     onEdit() {
-        alert('YO!');
+        this.editClicked.emit('A new string value');
     }
 }
