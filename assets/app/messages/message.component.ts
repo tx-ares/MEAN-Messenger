@@ -22,4 +22,8 @@ import { Message } from "./message.model";
 })
 export class MessageComponent {
     @Input('myMessageAliasName') message: Message; //By using 'property binding' we can pass in the message property.  Also, by adding '@Input()' to the property name, it can be made assignable from an outside source. i.e. An input field.
+
+    onEdit() {
+        alert('YO!');
+    }
 }
