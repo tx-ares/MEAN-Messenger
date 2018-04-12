@@ -8,5 +8,8 @@ import { Message } from "./messages/message.model";
     styles: [] // Angular also allows us to specically target elements within a component for styling.  We can pass it in as normal CSS here.
 })
 export class AppComponent {
-    message = Message = new Message ('A Constructor made this message!', 'Adan';)
+    messages: Message[] = [
+        new Message ('A Constructor made this message!', 'Adan'),
+        new Message ('A 2nd message in our message array! Look at dat!', 'Adan')
+    ];
 }
