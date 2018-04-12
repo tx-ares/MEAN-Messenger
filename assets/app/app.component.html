@@ -1,12 +1,6 @@
-<!-- {{ content }} We can call angular components by using String Interpolation.  This is simply calling the component by its classname with double curly braces. -->
+<!-- {{ content }} We can call angular components by using 'string interpolation'.  This is simply calling the component by its classname with double curly braces. -->
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <app-message
-                [myMessageAliasName]="message"
-                (editClicked)="message.content = $event"
-                *ngFor="let message of messages"> <!-- We can use the 'structural directive' *ngFor to create a loop that will iterate through all of our message array. -->
-            </app-message> <!-- This is the entry point for our 'message' component as seen as the 'selector' in message.component.ts   It also listens for an event called 'editClicked' which I defined in message.component.ts as a @Output() event. -->
-        </div>
+        <app-message-list></app-message-list>
     </div>
 </div>
