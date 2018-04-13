@@ -9,8 +9,8 @@
             {{ message.username }}
         </div>
         <div class="config">
-            <a href="#" (click)="onEdit()">Edit</a> <!-- Binding an event handler is quick with Angular.  ' (click)="myHandlerFunction" '  Is all you need.  -->
-            <a href="#">Delete</a>
+            <a (click)="onEdit()">Edit</a> <!-- Binding an event handler is quick with Angular.  ' (click)="myHandlerFunction" '  Is all you need.  -->
+            <a (click)="onDelete()">Delete</a>
         </div>
     </footer>
 </article>

@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 import { Message } from "./message.model";
 
+import { MessageService } from "./message.service";
+
 @Component({
     selector: 'app-message', // Pass in a CSS Selector ex)  'something' --> <something>
     templateUrl: './message.component.html',
@@ -25,8 +27,13 @@ export class MessageComponent {
 
     @Output() editClicked = new EventEmitter<string>(); //@Output can bind a output function once it is called, in addition 'emit' the event AND its type.
 
+    constructor(private messageService: MessageService) { }
 
     onEdit() {
         this.editClicked.emit('A new string value');
+    }
+
+    onDelete() {
+        this.messageService.deleteMessage(this.message);
     }
 }
