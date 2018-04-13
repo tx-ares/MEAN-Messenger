@@ -1,4 +1,6 @@
 <!-- {{ content }} We can call angular components by using 'string interpolation'.  This is simply calling the component by its classname with double curly braces. -->
 <div class="container">
     <app-header></app-header>
+    <hr>
+    <router-outlet></router-outlet> <!-- This looks like an HTML element, but is actually an Angular directive that tells it where to initialize the router component. ( On our 'index' page.) -->
 </div>

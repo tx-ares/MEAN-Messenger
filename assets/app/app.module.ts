@@ -9,6 +9,7 @@ import { MessageListComponent } from './messages/message-list.component';
 import { MessageInputComponent } from './messages/message-input.component';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { HeaderComponent } from './header.component';
+import { router } from "./app.router";
 
 
 @NgModule({ // This is a typescript Decorator that attaches additional info to a class.
@@ -21,7 +22,7 @@ import { HeaderComponent } from './header.component';
         AuthenticationComponent,
         HeaderComponent
     ],
-    imports: [BrowserModule, FormsModule],
+    imports: [BrowserModule, FormsModule, router],
     providers: [Title],
     bootstrap: [AppComponent]
 })
