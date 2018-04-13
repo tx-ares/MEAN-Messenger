@@ -9,6 +9,10 @@ import { MessageListComponent } from './messages/message-list.component';
 import { MessageInputComponent } from './messages/message-input.component';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { HeaderComponent } from './header.component';
+import { LogoutComponent } from './auth/logout.component';
+import { SigninComponent } from './auth/signin.component';
+import { SignupComponent } from './auth/signup.component';
+
 import { router } from "./app.router";
 
 
@@ -20,7 +24,10 @@ import { router } from "./app.router";
         MessageInputComponent,
         MessagesComponent,
         AuthenticationComponent,
-        HeaderComponent
+        HeaderComponent,
+        LogoutComponent,
+        SignupComponent,
+        SigninComponent
     ],
     imports: [BrowserModule, FormsModule, router],
     providers: [Title],
