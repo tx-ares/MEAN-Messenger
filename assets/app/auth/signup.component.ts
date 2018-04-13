@@ -10,6 +10,7 @@ export class SignupComponent {
 
     onSubmit() {
         console.log(this.myForm);
+        this.myForm.reset();
     }
 
     ngOnInit() { //This is how Angular can programatically create a form.  Complete with validation!
