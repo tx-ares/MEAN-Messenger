@@ -1,5 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-    <form (ngSubmit)="onSubmit(form)" #form="ngForm" ngNativeValidate>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" ngNativeValidate> <!-- Angular detects that this is a form element.  Additonally, it will create a form object in the backend, containing all the form's values and other data.  Note that to access the 'backend' object data and NOT the form html, we use #form="ngForm" to capture the value as 'form' but to set its value to the 'backend' form object Angular created. This is how we can access the values saved by the form! -->
         <div class="form-group">
             <label for="content">Content</label>
             <input
