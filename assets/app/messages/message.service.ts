@@ -5,6 +5,7 @@ export class MessageService {
 
     addMessage(message: Message) { //This is our main function of the 'MessageService'
         this.messages.push(message);
+        console.log(this.messages);
     }
 
     getMessage() {
