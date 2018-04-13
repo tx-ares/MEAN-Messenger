@@ -15,7 +15,7 @@ import { Message } from "./message.model";
         </div>`,
     // We can use the 'structural directive' *ngFor to create a loop that will iterate through all of our message array.
     // This is the entry point for our 'message' component as seen as the 'selector' in message.component.ts   It also listens for an event called 'editClicked' which I defined in message.component.ts as a @Output() event.
-    providers: [MessageService]
+    //providers: [MessageService]
 })
 export class MessageListComponent implements OnInit { //'implements OnInit' is a ng Life Cycle method which can contain code that will run when this component is initialized. Below, we can define that set of instructions on init in the 'ngOnInit()' function.
     messages: Message[] = [];
