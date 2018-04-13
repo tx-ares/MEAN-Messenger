@@ -1,9 +1,14 @@
 <div class="col-md-8 col-md-offset-2">
-    <form ngNativeValidate>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" ngNativeValidate>
         <div class="form-group">
             <label for="content">Content</label>
-            <input type="text" id="content" class="form-control" #input> <!-- By adding this #input we can capture the input value to be used anywhere in the scope of this component.  We'll pass it below on our click handler on our save button.-->
+            <input
+                type="text"
+                id="content"
+                class="form-control"
+                ngModel
+                name="content">
         </div>
-        <button class="btn btn-primary" type="submit" (click)="onSave(input.value)">Save</button>
+        <button class="btn btn-primary" type="submit">Save</button>
     </form>
 </div>
