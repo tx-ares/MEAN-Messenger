@@ -1,4 +1,4 @@
-import { Http } from "@angular/http";
+import { Http, Response, Headers } from "@angular/http";
 import { Message } from "./message.model";
 import { Injectable } from "@angular/core";
 import 'rxjs/Rx'; //Third party plugin , not a part of Angular
@@ -12,12 +12,13 @@ export class MessageService {
 
     constructor(private http: Http) {}
 
-    addMessage(message: Message) { //This is our main function of the 'MessageService'
+    addMessage(message: Message ) { //This is our main function of the 'MessageService'
         this.messages.push(message)
         const body = JSON.stringify(message)
-        return this.http.post('http://localhost:3000/message', body) //This POST request must match the route defined in routes/messages.js.  It does. ;)  Note :  This DOES NOT send the request.  It instead creates an Observable that can be 'subscribed' to .
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post('http://localhost:3000/message', body, {headers: headers}) //This POST request must match the route defined in routes/messages.js.  It does. ;)  Note :  This DOES NOT send the request.  It instead creates an Observable that can be 'subscribed' to .
             .map((response: Response) => response.json())  //This is from rxjs/Rx and allows for transforming of data.
-            .catch((error: Response) => Observable.throw(error.json()));
+            .catch((error: Response) => Observable.throw(error.json())); //Error handler
     }
 
     getMessages() {
