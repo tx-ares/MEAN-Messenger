@@ -16,7 +16,11 @@ export class MessageInputComponent {
     onSubmit(form: NgForm) { //We can pass in our 'input value' as an argument in our onSave function.  Here we want to capture the input.value and do something with it later.
         // console.log(form);
         const message = new Message(form.value.content, 'Adan');
-        this.messageService.addMessage(message);
+        this.messageService.addMessage(message)
+            .subscribe(
+                data => console.log(data),
+                error => console.error(error)
+            );
         form.resetForm();
     };
 }
