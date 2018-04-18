@@ -23,3 +23,5 @@ router.post('/', function(req, res, next) { //I will set this as a POST request 
 });
 
 module.exports = router;
+
+//'Observables' are JavaScript objects from 3rd party library used for asychronus task handling.
