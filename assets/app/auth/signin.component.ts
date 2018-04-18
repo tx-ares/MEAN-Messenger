@@ -19,7 +19,7 @@ export class SigninComponent {
             lastName: new FormControl(null, Validators.required),
             email: new FormControl(null, [
                 Validators.required,
-                Validators.pattern('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/')
+                Validators.pattern('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/') // TODO: This regex sucks and doesn't validate a correct email, this will cause problems trying to submit this form.  Need to find another/better regex string.
             ]),
             password: new FormControl(null, Validators.required)
         });

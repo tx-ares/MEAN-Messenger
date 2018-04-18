@@ -27,7 +27,7 @@ export class MessageComponent {
 
     @Output() editClicked = new EventEmitter<string>(); //@Output can bind a output function once it is called, in addition 'emit' the event AND its type.
 
-    constructor(private messageService: MessageService) { }
+    constructor(private messageService: MessageService) { } //Remember in order to utilize the MessageService we created, we need to create an instance of it in this component.
 
     onEdit() {
         this.editClicked.emit('A new string value');
