@@ -12,6 +12,7 @@ import { HeaderComponent } from './header.component';
 import { LogoutComponent } from './auth/logout.component';
 import { SigninComponent } from './auth/signin.component';
 import { SignupComponent } from './auth/signup.component';
+import { HttpModule } from '@angular/http';
 
 import { router } from "./app.router";
 
@@ -29,7 +30,13 @@ import { router } from "./app.router";
         SignupComponent,
         SigninComponent
     ],
-    imports: [BrowserModule, FormsModule, router, ReactiveFormsModule],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        router,
+        ReactiveFormsModule,
+        HttpModule
+    ],
     providers: [Title],
     bootstrap: [AppComponent]
 })

@@ -1,11 +1,18 @@
+import { Http } from "@angular/http";
 import { Message } from "./message.model";
+import { Injectable } from "@angular/core";
 
+
+@Injectable()
 export class MessageService {
     private messages: Message[] = []; //By adding 'private' to this to make it non-accessible from the outside.
 
+    constructor(private http: Http) {}
+
     addMessage(message: Message) { //This is our main function of the 'MessageService'
         this.messages.push(message);
-        console.log(this.messages);
+        const body = JSON.stringify(message);
+        this.http.post('http://localhost:3000/message', body); //This POST request must match the route defined in routes/messages.js.  It does. ;)  Note :  This DOES NOT send the request.  It instead creates an Observable that can be 'subscribed' to .
     }
 
     getMessages() {
