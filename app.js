@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/message', messageRoutes); // Order of routes is important here.  I need to load my more specific sub-routes first before any other routes try to handle them.
-app.use('/user', userRoutes);
+// app.use('/user', userRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
