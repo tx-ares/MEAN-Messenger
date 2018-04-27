@@ -12,11 +12,15 @@ export class MessageService {
     constructor(private http: Http) {}
 
     addMessage(message: Message ) { //This is our main function of the 'MessageService'
-        this.messages.push(message)
         const body = JSON.stringify(message)
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/message', body, {headers: headers}) //This POST request must match the route defined in routes/messages.js.  It does. ;)  Note :  This DOES NOT send the request.  It instead creates an Observable that can be 'subscribed' to .
-            .map((response: Response) => response.json())  //This is from rxjs/Rx and allows for transforming of data.
+            .map((response: Response) => {
+                const result = response.json();  //This is from rxjs/Rx and allows for transforming of data.
+                const message = new Message(result.obj.content, 'Check Testerman', result.obj._id, null);
+                this.messages.push(message);
+                return message;
+            })
             .catch((error: Response) => Observable.throw(error.json())); //Error handler
     }
 
@@ -27,7 +31,7 @@ export class MessageService {
                 let transformedMessages: Message[] = [];
 
                 for (let message of messages) { //es6 JS syntax for referring to every index of the 'messages' array as a 'message'
-                    transformedMessages.push( new Message(message.content, 'Check Testerman', message.id,  null) );
+                    transformedMessages.push( new Message(message.content, 'Check Testerman', message._id,  null) ); // Note the '_' in message._id.  This is how it is defined in mongoDb
                 }
                 this.messages = transformedMessages;
                 return transformedMessages; //This .map() method at the end of the day is going to return an 'observable'
@@ -43,7 +47,7 @@ export class MessageService {
         this.messages.push(message)
         const body = JSON.stringify(message)
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/message/' + message.messageId, body, {headers: headers}) // This is very similar to the addMessage target route, except that it is also expecting a messageId as defined in the patch route.
+        return this.http.patch('http://localhost:3000/message/' + message.messageId, body, {headers: headers}) // This is very similar to the addMessage target route, except that it is also expecting a messageId as defined in the patch route.
             .map((response: Response) => response.json())  //This is from rxjs/Rx and allows for transforming of data.
             .catch((error: Response) => Observable.throw(error.json())); //Error handler
 
