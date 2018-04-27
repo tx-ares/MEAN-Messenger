@@ -68,6 +68,35 @@ router.patch('/:id', function(req, res, next) {// A 'patch' route is used to cha
     })
 });
 
+router.delete('/:id', function(req, res, next){
+    Message.findById(req.params.id, function(err, message) {
+        if (err) { // Default error handler
+            return res.status(500).json({
+                title: 'Dang, it broke!',
+                error: err
+            });
+        }
+        if (!message) { // If there isn't a legitimate error throw but something's still wrong, we can catch it with a custom ' error handler '. In this case, I want to throw an error if there's no message in my request.
+            return res.status(500).json({
+                title: 'Hmm, no message was found!',
+                error: { message: 'Hmm, no message in the request!' }
+            })
+        }
+        message.content = req.body.content;
+        message.remove(function(err, result) { // Very similar to patch route , except we will .remove() it instead of .save()
+            if (err) { // Error handler
+                return res.status(500).json({
+                    title: 'Dang, it broke!',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Message delete: SUCCESS',
+                obj: result
+            });
+        })
+    })
+})
 module.exports = router;
 
 //'Observables' are JavaScript objects from 3rd party library used for asychronus task handling.
