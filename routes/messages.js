@@ -13,7 +13,7 @@ router.get('/' , function(req, res, next) { //Because of redirect defined in app
                     error: err
                 });
             }
-            res.status(200).json({
+            res.status(200).json({ //Like below, a 'everything's okay' message. Can call this a 'success handler'.
                 message: 'Messages fetch: SUCCESS',
                 obj: messages
             })
