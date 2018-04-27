@@ -4,8 +4,6 @@ import { Injectable } from "@angular/core";
 import 'rxjs/Rx'; //Third party plugin , not a part of Angular
 import { Observable } from "rxjs";
 
-
-
 @Injectable()
 export class MessageService {
     private messages: Message[] = []; //By adding 'private' to this to make it non-accessible from the outside.
@@ -22,7 +20,18 @@ export class MessageService {
     }
 
     getMessages() {
-        return this.messages;
+        return this.http.get('http://localhost:3000/message') // Now fetching data from database.
+            .map((response: Response) => { // I expect an array of messages, so I will use the .map() method it to iterate over every message and....
+                const messages = response.json().obj; // parsing into json.
+                let transformedMessages: Message[] = [];
+
+                for (let message of messages) { //es6 JS syntax for referring to every index of the 'messages' array as a 'message'
+                    transformedMessages.push( new Message(message.content, message.id, 'Test-a-rino', null) );
+                }
+                this.messages = transformedMessages;
+                return transformedMessages; //This .map() method at the end of the day is going to return an 'observable'
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
     deleteMessage(message: Message) {
