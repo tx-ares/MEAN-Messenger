@@ -11,6 +11,8 @@ import { Message } from "./message.model";
 })
 
 export class MessageInputComponent implements OnInit {
+    message: Message;
+
     constructor(private messageService: MessageService) {}
 
     onSubmit(form: NgForm) { //We can pass in our 'input value' as an argument in our onSave function.  Here we want to capture the input.value and do something with it later.
@@ -24,9 +26,13 @@ export class MessageInputComponent implements OnInit {
         form.resetForm();
     };
 
-    ngOnInit() {
-        this.messageService.messageInEditMode.subscribe(
+    onClear(form: NgForm) {
+        form.resetForm();
+    }
 
+    ngOnInit() {
+        this.messageService.messageInEditMode.subscribe( //This will run when this component is intialized. It will subscribe to an event that is emitted from the 'message.service' service.
+            (message: Message) => this.message = message
         );
     }
 }

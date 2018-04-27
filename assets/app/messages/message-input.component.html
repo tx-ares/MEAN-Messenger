@@ -6,10 +6,13 @@
                 type="text"
                 id="content"
                 class="form-control"
-                ngModel
+                [ngModel]="message?.content"
                 name="content"
                 required>
-        </div>
+        </div> <!-- Above ngModel contains a conditional, message?.content will only populate this field if message.content 's value is NOT undefined -->
+        <button type="button" class="btn btn-danger" (click)="onClear(form)">Clear</button>
         <button class="btn btn-primary" type="submit">Save</button>
     </form>
 </div>
+
+<!--  -->
