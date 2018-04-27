@@ -60,15 +60,13 @@ router.patch('/:id', function(req, res, next) {// A 'patch' route is used to cha
                     error: err
                 });
             }
-            res.status(200).json({ 
+            res.status(200).json({
                 message: 'Message update: SUCCESS',
                 obj: result
             });
         })
     })
-}) {
-
-}
+});
 
 module.exports = router;
 
