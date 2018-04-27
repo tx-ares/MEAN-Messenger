@@ -39,6 +39,10 @@ export class MessageService {
         this.messageInEditMode.emit(message);
     }
 
+    updateMessage(message: Message) { // Method that actually handles the updating on the front end
+        
+    }
+
     deleteMessage(message: Message) {
         this.messages.splice(this.messages.indexOf(message) , 1); //We can use the JavaScript method .splice to remove an index from our array.  In this case, to remove a message from the messages array.
     }
