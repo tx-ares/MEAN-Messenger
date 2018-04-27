@@ -40,7 +40,13 @@ export class MessageService {
     }
 
     updateMessage(message: Message) { // Method that actually handles the updating on the front end
-        
+        this.messages.push(message)
+        const body = JSON.stringify(message)
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post('http://localhost:3000/message/' + message.messageId, body, {headers: headers}) // This is very similar to the addMessage target route, except that it is also expecting a messageId as defined in the patch route.
+            .map((response: Response) => response.json())  //This is from rxjs/Rx and allows for transforming of data.
+            .catch((error: Response) => Observable.throw(error.json())); //Error handler
+
     }
 
     deleteMessage(message: Message) {
