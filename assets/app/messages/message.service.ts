@@ -26,7 +26,7 @@ export class MessageService {
                 let transformedMessages: Message[] = [];
 
                 for (let message of messages) { //es6 JS syntax for referring to every index of the 'messages' array as a 'message'
-                    transformedMessages.push( new Message(message.content, message.id, 'Test-a-rino', null) );
+                    transformedMessages.push( new Message(message.content, 'Check Testerman', message.id,  null) );
                 }
                 this.messages = transformedMessages;
                 return transformedMessages; //This .map() method at the end of the day is going to return an 'observable'
