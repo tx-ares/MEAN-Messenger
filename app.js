@@ -10,6 +10,8 @@ var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
 var userRoutes = require('./routes/user');
 
+var userRoutes = require('./routes/user');
+
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/node-angular');  // We can now connect to our database to the server using Mongoose.  We can then pass in the path to where the db server lives.  I can also specify a new directory "node-angular" , if it doesn't exist, it will create it on the fly.
@@ -34,7 +36,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/message', messageRoutes); // Order of routes is important here.  I need to load my more specific sub-routes first before any other routes try to handle them.
-// app.use('/user', userRoutes);
+app.use('/user', userRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
