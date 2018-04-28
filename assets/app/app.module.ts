@@ -14,6 +14,8 @@ import { SigninComponent } from './auth/signin.component';
 import { SignupComponent } from './auth/signup.component';
 import { HttpModule } from '@angular/http';
 
+import { AuthService } from './auth/auth.service';
+
 import { router } from "./app.router";
 
 
@@ -37,7 +39,7 @@ import { router } from "./app.router";
         ReactiveFormsModule,
         HttpModule
     ],
-    providers: [Title],
+    providers: [Title, AuthService], // In Angular 2 , you can import services at the component level, or at the entire app level.  A service imported at the app level is known as a Provider.  As a side note, this principle is also known as redux in React.
     bootstrap: [AppComponent]
 })
 export class AppModule { }
