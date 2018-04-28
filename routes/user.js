@@ -1,7 +1,7 @@
 //This will contain user related routes.  So sub-routes or child routes like '/user/profile' or something.
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcrypt'); // This is our hash encryption package. It can be used to secure data like a password.
+var bcrypt = require('bcryptjs'); // This is our hash encryption package. It can be used to secure data like a password.
 
 var User = require('../models/user');
 
