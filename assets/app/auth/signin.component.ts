@@ -1,6 +1,10 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
+import { AuthService } from './auth.service';
+
+import { User } from "./user.model"
+
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html'
@@ -8,8 +12,21 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class SigninComponent {
     myForm : FormGroup; //There exists a FormBuilder tool with Angular... Look into more later..
 
+    constructor(private authService: AuthService) {} //Remember that components must create instances of services from within the component like this so that it has access to it.
+
     onSubmit() {
-        console.log(this.myForm);
+        // console.log(this.myForm);
+        const user = new User(
+            this.myForm.value.email,
+            this.myForm.value.password,
+            this.myForm.value.firstName,
+            this.myForm.value.lastName
+        );
+        this.authService.signIn(user)
+            .subscribe(
+                data => console.log(data),
+                error => console.error(error)
+            )
         this.myForm.reset();
     }
 
@@ -18,8 +35,6 @@ export class SigninComponent {
             firstName: new FormControl(null, Validators.required),
             lastName: new FormControl(null, Validators.required),
             email: new FormControl(null, [
-                Validators.required,
-                Validators.pattern('/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/') // TODO: This regex sucks and doesn't validate a correct email, this will cause problems trying to submit this form.  Need to find another/better regex string.
             ]),
             password: new FormControl(null, Validators.required)
         });
