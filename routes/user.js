@@ -26,4 +26,15 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.post('/signin', function(req, res, next) { // Signin route
+    User.findOne({email: req.body.email, function(err, user) {
+        if (err) { // Error handler
+            return res.status(500).json({
+                title: 'The was an error creating a User.',
+                error: err
+            });
+        }
+    }}); //Express command to 'find one' entry in the database.  We will pass in my email that is in my req.body
+});
+
 module.exports = router;
