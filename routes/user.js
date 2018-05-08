@@ -40,6 +40,12 @@ router.post('/signin', function(req, res, next) { // Signin route
                 error: {message: 'Invalid login credentials'}
             });
         }
+        if (!bcrypt.compareSync(req.body.password, user.password)) {// The same package used to encrypt can also 'decrypt' the password and compare to the one entered in the field.
+            return res.status(401).json({
+                title: 'Login failed',
+                error: {message: 'Invalid login credentials'}
+            });
+        }
     }}); //Express command to 'find one' entry in the database.  We will pass in my email that is in my req.body
 });
 
