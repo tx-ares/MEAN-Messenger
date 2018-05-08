@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs'); // This is our hash encryption package. It can be used to secure data like a password.
+var jwt = require('jsonwebtoken'); // The JSON Web Token package will be used in creating tokens for auth sessions.
 
 var User = require('../models/user');
 
