@@ -34,6 +34,12 @@ router.post('/signin', function(req, res, next) { // Signin route
                 error: err
             });
         }
+        if (!user) { //If the user doesn't exist OR the password is incorrect say this...
+            return res.status(401).json({
+                title: 'Login failed',
+                error: {message: 'Invalid login credentials'}
+            });
+        }
     }}); //Express command to 'find one' entry in the database.  We will pass in my email that is in my req.body
 });
 
