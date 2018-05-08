@@ -46,6 +46,12 @@ router.post('/signin', function(req, res, next) { // Signin route
                 error: {message: 'Invalid login credentials'}
             });
         }
+        var token = jwt.sign({user: user} , 'secretkey', {expiresIn: 7200}); // With this method , we can create a token for the authorized session, by passing in the 'user' object we got from the db, a 'secret' string, and the expiration timer.  7200 seconds is 2 hours.
+        res.status(200).json({
+            message: 'Login: SUCCESS',
+            token: token,
+            userId: user._id
+        });
     }}); //Express command to 'find one' entry in the database.  We will pass in my email that is in my req.body
 });
 
