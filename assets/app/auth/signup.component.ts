@@ -35,6 +35,7 @@ export class SignupComponent {
             lastName: new FormControl(null, Validators.required),
             email: new FormControl(null, [
                 Validators.required,
+                Validators.pattern("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
             ]),
             password: new FormControl(null, Validators.required)
         });
