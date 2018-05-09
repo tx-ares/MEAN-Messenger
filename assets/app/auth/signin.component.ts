@@ -17,16 +17,15 @@ export class SigninComponent {
 
     onSubmit() {
         // console.log(this.myForm);
-        const user = new User(
-            this.myForm.value.email,
-            this.myForm.value.password,
-            this.myForm.value.firstName,
-            this.myForm.value.lastName
-        );
+        const user = new User(this.myForm.value.email, this.myForm.value.password);
         this.authService.signIn(user)
             .subscribe(
-                data => console.log(data),
-                error => console.error(error)
+                data => { // 2 ways to store the token:  1) Browser: Local Storage & Session Storage, Accessable by JavaScript, but vulnerable to cross-scripting attacks.  and 2) Cookies.  Are not accessible by JavaScript, more complicated to submit , and also are vulnerable to other types of attacks.
+                    localStorage.setItem('token', data.token); // I will opt for localStorage.  ( Option 1 ) This is a JavaScript special object. Not angular 2.
+                    localStorage.setItem('userId', data.userId);
+                    this.router.navigateByUrl('/');
+                },
+                error => console.log(error)
             )
         this.myForm.reset();
     }
