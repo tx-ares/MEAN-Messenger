@@ -25,7 +25,7 @@ export class SigninComponent {
                     localStorage.setItem('userId', data.userId);
                     this.router.navigateByUrl('/');
                 },
-                error => console.log(error)
+                error => console.log(error, " << signIn post error")
             )
         this.myForm.reset();
     }
