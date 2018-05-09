@@ -13,7 +13,7 @@ import { User } from "./user.model";
 export class SigninComponent {
     myForm : FormGroup; //There exists a FormBuilder tool with Angular... Look into more later..
 
-    constructor(private authService: AuthService) {} //Remember that components must create instances of services from within the component like this so that it has access to it.
+    constructor(private authService: AuthService, private router: Router) {} //Remember that components must create instances of services from within the component like this so that it has access to it.
 
     onSubmit() {
         // console.log(this.myForm);
