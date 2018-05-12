@@ -25,3 +25,10 @@ a.danger {
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.loading-icon {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    position: fixed;
+}
