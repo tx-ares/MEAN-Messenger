@@ -27,4 +27,9 @@ export class AuthService {
     logOut() {
         localStorage.clear();  // This will delete the authorized token in the browser.  A simple way to lock someone out of an account.
     }
+
+    isLoggedIn() {
+        return localStorage.getItem('token') !== null;  // Simple check for if the token exists in the localStorage.  Easy way to see if user is logged in.
+    }
+
 };
