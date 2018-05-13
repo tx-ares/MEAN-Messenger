@@ -23,4 +23,8 @@ export class AuthService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    logOut() {
+        localStorage.clear();  // This will delete the authorized token in the browser.  A simple way to lock someone out of an account.
+    }
 };
