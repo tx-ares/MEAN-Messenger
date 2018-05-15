@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from "@angular/http";
+import 'rxjs/Rx';
 import { Observable} from 'rxjs/Rx';
 
 import { User } from "./user.model";
@@ -17,7 +18,9 @@ export class AuthService {
     };
 
     signIn(user: User) {
+        console.log("signIn fired!")
         const body = JSON.stringify(user);
+        console.log(body, " << body")
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post('http://localhost:3000/user/signin', body, {headers: headers})
             .map((response: Response) => response.json())
