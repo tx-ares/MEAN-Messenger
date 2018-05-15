@@ -11,13 +11,17 @@ import { User } from "./user.model";
     templateUrl: './signin.component.html'
 })
 export class SigninComponent {
-    myForm : FormGroup; //There exists a FormBuilder tool with Angular... Look into more later..
+    myForm: FormGroup; //There exists a FormBuilder tool with Angular... Look into more later..
 
     constructor(private authService: AuthService, private router: Router) {} //Remember that components must create instances of services from within the component like this so that it has access to it.
 
     onSubmit() {
         // console.log(this.myForm);
-        const user = new User(this.myForm.value.email, this.myForm.value.password);
+        const user = new User(
+            this.myForm.value.email,
+            this.myForm.value.password
+        );
+        console.log(user, " << user Obj")
         this.authService.signIn(user)
             .subscribe(
                 data => { // 2 ways to store the token:  1) Browser: Local Storage & Session Storage, Accessable by JavaScript, but vulnerable to cross-scripting attacks.  and 2) Cookies.  Are not accessible by JavaScript, more complicated to submit , and also are vulnerable to other types of attacks.
