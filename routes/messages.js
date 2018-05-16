@@ -1,7 +1,9 @@
 //This will contain message related routes.  So sub-routes or child routes like '/messages/settings' or something.
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
 
+var User = require('../models/user');
 var Message = require('../models/message');
 
 router.get('/' , function(req, res, next) { //Because of redirect defined in app.router.ts I can just use '/' and I will get defaulted to /messages.
@@ -20,9 +22,31 @@ router.get('/' , function(req, res, next) { //Because of redirect defined in app
         })
 });
 
+router.use('/', function(req, res, next) { // On each request, this route is reached.
+    jwt.verify(req.query.token, 'secret', function(err, decoded) {
+        if (err) {
+            return res.status(401).json({
+                title: 'Not Authenticated',
+                error: err
+            });
+        }
+        next(); // If there is no error, meaning 'token' is valid, just allow it to continue to next step , without returning anything.
+    })
+});
+
 router.post('/', function(req, res, next) { //I will set this as a POST request so that Angular knows to post my 'message' data to my mongoDb backend.
+    var decoded = jwt.decode(req.query.token); // Important note: decode does NOT check for validity.  It only decodes.  Make sure to use jwt.verify() first.
+    User.findById(decoded.user._id, function(err,user) {
+        if (err) { // Error handler
+            return res.status(500).json({
+                title: 'Dang, it broke!',
+                error: err
+            });
+        }
+    })
     var message = new Message({
-        content: req.body.content
+        content: req.body.content,
+        user: user
     });
     message.save(function(err, result) {
         if (err) { // Error handler
@@ -31,6 +55,8 @@ router.post('/', function(req, res, next) { //I will set this as a POST request 
                 error: err
             });
         }
+        user.messages.push(result);
+        user.save();
         res.status(201).json({ //I am setting a 'everything's ok' code for 201
             message: 'Message post: SUCCESS',
             obj: result
