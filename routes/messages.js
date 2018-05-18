@@ -57,6 +57,7 @@ router.post('/', function(req, res, next) { //I will set this as a POST request 
             }
             user.messages.push(result);
             user.save();
+            result.user = user; // Add missing user data for reference to work on front end
             res.status(201).json({ //I am setting a 'everything's ok' code for 201
                 message: 'Message post: SUCCESS',
                 obj: result
