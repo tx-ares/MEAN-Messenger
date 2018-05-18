@@ -20,4 +20,8 @@ import { Error } from "./error.model";
 export class ErrorComponent {
     error: Error;
     displayed = 'none';
+
+    onErrorHandled() {
+        this.display = 'none';
+    }
 }
