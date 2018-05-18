@@ -22,7 +22,7 @@ export class MessageInputComponent implements OnInit {
             this.message.content = form.value.content;
             this.messageService.updateMessage(this.message)
                 .subscribe(
-                    result => console.log(result)
+                    result => console.log(result, " << result")
                 );
             this.message = null;
 
@@ -31,7 +31,7 @@ export class MessageInputComponent implements OnInit {
             const message = new Message(form.value.content, 'Adan', null, null);
             this.messageService.addMessage(message)
                 .subscribe(
-                    data => console.log(data),
+                    data => console.log(data , " << data"),
                     error => console.error(error)
                 );
         }
