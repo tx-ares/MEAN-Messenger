@@ -35,7 +35,12 @@ export class MessageService {
                 let transformedMessages: Message[] = [];
 
                 for (let message of messages) { //es6 JS syntax for referring to every index of the 'messages' array as a 'message'
-                    transformedMessages.push( new Message(message.content, 'Check Testerman', message._id,  null) ); // Note the '_' in message._id.  This is how it is defined in mongoDb
+                    transformedMessages.push( new Message(
+                        message.content,
+                        message.user.firstName,
+                        message._id,
+                        message.user._id) 
+                    ); // Note the '_' in message._id.  This is how it is defined in mongoDb
                 }
                 this.messages = transformedMessages;
                 return transformedMessages; //This .map() method at the end of the day is going to return an 'observable'
