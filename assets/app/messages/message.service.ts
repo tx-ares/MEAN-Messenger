@@ -4,13 +4,14 @@ import 'rxjs/Rx'; //Third party plugin , not a part of Angular
 import { Observable } from "rxjs";
 
 import { Message } from "./message.model";
+import { ErrorService } from "../errors/error.service";
 
 @Injectable()
 export class MessageService {
     private messages: Message[] = []; //By adding 'private' to this to make it non-accessible from the outside.
     messageInEditMode = new EventEmitter<Message>();
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private errorService: ErrorService) {}
 
     addMessage(message: Message ) { //This is our main function of the 'MessageService'
         const body = JSON.stringify(message)
@@ -29,8 +30,11 @@ export class MessageService {
                 this.messages.push(message);
                 return message;
             })
-            .catch((error: Response) => Observable.throw(error.json())); //Error handler
-    }
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json()); //Error handler
+            });
+        }
 
     getMessages() {
         return this.http.get('http://localhost:3000/message') // Now fetching data from database.
@@ -48,7 +52,10 @@ export class MessageService {
                 this.messages = transformedMessages;
                 return transformedMessages; //This .map() method at the end of the day is going to return an 'observable'
             })
-            .catch((error: Response) => Observable.throw(error.json()));
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json()); //Error handler
+            });
     }
 
     editMessage(message: Message) {
@@ -64,7 +71,10 @@ export class MessageService {
             : '';
         return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers}) // This is very similar to the addMessage target route, except that it is also expecting a messageId as defined in the patch route.
             .map((response: Response) => response.json())  //This is from rxjs/Rx and allows for transforming of data.
-            .catch((error: Response) => Observable.throw(error.json())); //Error handler
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json()); //Error handler
+            });
 
     }
 
