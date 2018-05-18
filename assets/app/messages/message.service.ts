@@ -21,7 +21,11 @@ export class MessageService {
         return this.http.post('http://localhost:3000/message' + token, body, {headers: headers}) //This POST request must match the route defined in routes/messages.js.  It does. ;)  Note :  This DOES NOT send the request.  It instead creates an Observable that can be 'subscribed' to .
             .map((response: Response) => {
                 const result = response.json();  //This is from rxjs/Rx and allows for transforming of data.
-                const message = new Message(result.obj.content, 'Check Testerman', result.obj._id, null);
+                const message = new Message(
+                        result.obj.content,
+                        result.obj.user.firstName,
+                        result.obj._id,
+                        result.obj.user._id);
                 this.messages.push(message);
                 return message;
             })
@@ -33,13 +37,12 @@ export class MessageService {
             .map((response: Response) => { // I expect an array of messages, so I will use the .map() method it to iterate over every message and....
                 const messages = response.json().obj; // parsing into json.
                 let transformedMessages: Message[] = [];
-
                 for (let message of messages) { //es6 JS syntax for referring to every index of the 'messages' array as a 'message'
                     transformedMessages.push( new Message(
                         message.content,
                         message.user.firstName,
                         message._id,
-                        message.user._id) 
+                        message.user._id)
                     ); // Note the '_' in message._id.  This is how it is defined in mongoDb
                 }
                 this.messages = transformedMessages;
