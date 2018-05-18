@@ -8,6 +8,7 @@ var Message = require('../models/message');
 
 router.get('/', function(req, res, next) { //Because of redirect defined in app.router.ts I can just use '/' and I will get defaulted to /messages.
     Message.find() //mongoDb command to fetch all messages when no additional queries are in my route.
+        .populate('user', 'firstName') //Mongoose method to also get the User firstName field from the reference created in /models/message.js
         .exec(function(err, messages) {
             if (err) { // Error handler
                 return res.status(500).json({
