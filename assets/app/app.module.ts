@@ -12,6 +12,8 @@ import { HeaderComponent } from './header.component';
 import { LogoutComponent } from './auth/logout.component';
 import { SigninComponent } from './auth/signin.component';
 import { SignupComponent } from './auth/signup.component';
+import { ErrorComponent } from './errors/error.component';
+
 import { HttpModule } from '@angular/http';
 
 import { AuthService } from './auth/auth.service';
@@ -30,7 +32,8 @@ import { router } from "./app.router";
         HeaderComponent,
         LogoutComponent,
         SignupComponent,
-        SigninComponent
+        SigninComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,
