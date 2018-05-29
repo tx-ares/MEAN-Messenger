@@ -3,10 +3,6 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { MessageComponent } from './messages/message.component';
-import { MessagesComponent } from './messages/messages.component';
-import { MessageListComponent } from './messages/message-list.component';
-import { MessageInputComponent } from './messages/message-input.component';
 import { AuthenticationComponent } from './auth/authentication.component';
 import { HeaderComponent } from './header.component';
 import { LogoutComponent } from './auth/logout.component';
@@ -21,14 +17,13 @@ import { ErrorService } from './errors/error.service';
 
 import { router } from "./app.router";
 
+//Modularized components
+import { MessageModule } from "./messages/message.module";
+
 
 @NgModule({ // This is a typescript Decorator that attaches additional info to a class.
     declarations: [
         AppComponent,
-        MessageComponent,
-        MessageListComponent,
-        MessageInputComponent,
-        MessagesComponent,
         AuthenticationComponent,
         HeaderComponent,
         LogoutComponent,
@@ -41,7 +36,8 @@ import { router } from "./app.router";
         FormsModule,
         router,
         ReactiveFormsModule,
-        HttpModule
+        HttpModule,
+        MessageModule
     ],
     providers: [Title, AuthService, ErrorService], // In Angular 2 , you can import services at the component level, or at the entire app level.  A service imported at the app level is known as a Provider.  As a side note, this principle is also known as redux in React.
     bootstrap: [AppComponent]
