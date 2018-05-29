@@ -11,12 +11,6 @@ import { MessageService } from "./messages/message.service";
 })
 export class AppComponent {
     public constructor(private titleService: Title ) {
-        // let currentTitle = this.titleService.getTitle();
         this.titleService.setTitle("One MEAN Messenger");
     }
-
-    // public setTitle( newTitle: string) {
-    //   this.titleService.setTitle( "newTitle" );
-    // }
-    
 }
